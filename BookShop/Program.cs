@@ -1,7 +1,15 @@
+using BookShop;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//var dbConnextionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+//builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(dbConnextionString));
+builder.Services.AddDbContext<AppDbContext>(options => 
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
 
 var app = builder.Build();
 
