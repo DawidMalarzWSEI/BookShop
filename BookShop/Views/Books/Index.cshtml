@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BookShop.Models.Book>
+
+@{
+    ViewData["Title"] = "Lista Książek";
+}
+
+<p>
+    <a asp-action="Create">Dodaj</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {   
+        @*var subDescription = item.Description.Substring(0, 150);*@
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                 <div class="mx-auto">
+                    <img class="center m-3" src="@Html.DisplayFor(modelItem => item.PictureURL)" alt="Card image cap" width="141" height="204">
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <h6 class="text-warning font-weight-bold">@Html.DisplayFor(modelItem => item.Price)</h6>
+                    <div class="btn-group">
+                        <a href="@Html.DisplayFor(modelItme => item.Id)" class="btn btn-primary">Czytaj</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
