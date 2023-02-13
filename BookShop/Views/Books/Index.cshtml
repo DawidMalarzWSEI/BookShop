@@ -4,11 +4,8 @@
     ViewData["Title"] = "Lista Książek";
 }
 
-<p>
-    <a asp-action="Create">Dodaj</a>
-</p>
 
-<div class="row">
+<div class="row mt-5">
     @foreach (var item in Model)
     {   
         @*var subDescription = item.Description.Substring(0, 150);*@
@@ -22,10 +19,13 @@
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                     <h6 class="text-warning font-weight-bold">@Html.DisplayFor(modelItem => item.Price)</h6>
                     <div class="btn-group">
-                        <a href="@Html.DisplayFor(modelItme => item.Id)" class="btn btn-primary">Czytaj</a>
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Czytaj</a>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
                     </div>
                 </div>
             </div>
         </div>
     }
 </div>
+
+@await Html.PartialAsync("_CreateItem", "Books")

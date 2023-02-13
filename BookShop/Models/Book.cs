@@ -1,10 +1,11 @@
-﻿using BookShop.Data.Enums;
+﻿using BookShop.Data.Base;
+using BookShop.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookShop.Models
 {
-    public class Book
+    public class Book: IEntityBase
 	{
 		[Key]
 		public int Id { get; set; }
@@ -31,5 +32,5 @@ namespace BookShop.Models
 		[ForeignKey("AuthorId")]
 		[Display(Name = "Autor")]
 		public Author Author { get; set; }
-	}
+    }
 }

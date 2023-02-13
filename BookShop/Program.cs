@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IAuthorsService, AuthorsService>();
+builder.Services.AddScoped<IBooksService, BooksService>();
 
 //var dbConnextionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
