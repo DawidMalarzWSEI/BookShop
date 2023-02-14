@@ -1,5 +1,6 @@
 using BookShop;
 using BookShop.Data;
+using BookShop.Data.Cart;
 using BookShop.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IAuthorsService, AuthorsService>();
 builder.Services.AddScoped<IBooksService, BooksService>();
-
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+builder.Services.AddSession();
 //var dbConnextionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(dbConnextionString));
@@ -30,6 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 
