@@ -4,12 +4,9 @@
 @{
     ViewData["Title"] = "Zarejestruj się na nowe konto";
 }
-<div class="row">
+<div class="row mt-5">
     <div class="col-md-6 offset-3">
         <div class="card p-3 shadow">
-            <p class="text-center">
-                <h4>Zarejestruj się na nowe konto</h4>
-            </p>
 
             @if (TempData["Error"] != null)
             {
@@ -39,9 +36,9 @@
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
 
-                        <div class="form-group mt-3">
-                            <button class="btn btn-success float-right" type="submit">Zarejestruj się</button>
-                            <a class="btn btn-secondary" asp-controller="Books" asp-action="Index">Anuluj</a>
+                        <div class="form-group text-center mt-3">
+                            <button class="btn btn-lg btn-success" type="submit">Zarejstruj się</button>
+                            <a class="btn btn-lg btn-secondary" asp-controller="Books" asp-action="Index">Anuluj</a>
                         </div>
                     </form>
                 </div>
