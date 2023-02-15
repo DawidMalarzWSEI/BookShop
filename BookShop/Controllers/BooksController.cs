@@ -1,12 +1,15 @@
 ﻿using BookShop.Data;
 using BookShop.Data.Services;
+using BookShop.Data.Static;
 using BookShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Controllers
 {
+	[Authorize(Roles = UserRoles.Admin)]
 	public class BooksController : Controller
 	{
 		private readonly IBooksService _service;
@@ -16,12 +19,14 @@ namespace BookShop.Controllers
 			_service = service;
 		}
 
+		[AllowAnonymous]
 		public async Task<IActionResult> Index()
 		{
 			var allBooks = await _service.GetAllAsync(n => n.Author);
 			return View(allBooks);
 		}
 
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var allBooks = await _service.GetAllAsync(n => n.Author);
@@ -35,6 +40,7 @@ namespace BookShop.Controllers
             return View("Index", allBooks);
         }
 
+		[AllowAnonymous]
         public async Task<IActionResult> Details(int id)
 		{
 			var bookDetail = await _service.GetBookByIdAsync(id);

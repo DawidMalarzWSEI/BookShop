@@ -1,5 +1,7 @@
-﻿using BookShop.Models;
+﻿using BookShop.Data.Static;
+using BookShop.Models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookShop.Data
@@ -55,5 +57,54 @@ namespace BookShop.Data
 				}
 			}
 		}
+		
+		public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+		{
+			using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+			{
+				var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+				if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+				{
+					await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+				}
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                }
+
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+				string adminUserEmail = "dmalarz.kontakt@gmail.com";
+
+                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+				if (adminUser == null) {
+					var newAdminUser = new ApplicationUser()
+					{
+						UserName = "admin",
+						Email = "dmalarz.kontakt@gmail.com",
+						EmailConfirmed = true
+					};
+					await userManager.CreateAsync(newAdminUser, "zaq1@WSX");
+					await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+				}
+
+                string userEmail = "test@test.pl";
+
+                var user = await userManager.FindByEmailAsync(userEmail);
+                if (user == null)
+                {
+                    var newUser = new ApplicationUser()
+                    {
+                        UserName = "AppUser",
+                        Email = userEmail,
+                        EmailConfirmed = true
+                    };
+                    await userManager.CreateAsync(newUser, "zaq1@WSX");
+                    await userManager.AddToRoleAsync(newUser, UserRoles.User);
+                }
+
+            }
+        }
 	}
 }

@@ -20,7 +20,11 @@
                     <h6 class="text-warning font-weight-bold">@Html.DisplayFor(modelItem => item.Price)</h6>
                     <div class="btn-group">
                         <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Czytaj</a>
-                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
+                        }
+                        
                     </div>
                 </div>
             </div>

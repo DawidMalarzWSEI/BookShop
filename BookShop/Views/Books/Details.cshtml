@@ -60,7 +60,11 @@
 </div>
 <a asp-controller="Authors" asp-action="Details" asp-route-id="@Model.AuthorId">@Model.Author.LastName</a>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    }
+    
     <a asp-action="Index">Back to List</a>
     <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model?.Id"><i class="bi bi-cart-plus"></i>Add to cart</a>
 </div>

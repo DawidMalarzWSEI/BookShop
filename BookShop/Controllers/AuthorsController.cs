@@ -1,10 +1,13 @@
 ﻿using BookShop.Data;
 using BookShop.Data.Services;
+using BookShop.Data.Static;
 using BookShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.Controllers
 {
+	[Authorize(Roles = UserRoles.Admin)]
 	public class AuthorsController : Controller
 	{
 		private readonly IAuthorsService _service;
@@ -14,6 +17,7 @@ namespace BookShop.Controllers
 			_service = service;
 		}
 
+		[AllowAnonymous]
 		public async Task<IActionResult> Index()
 		{
 			var data = await _service.GetAllAsync();
@@ -34,7 +38,8 @@ namespace BookShop.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-		public async Task<IActionResult> Details(int id)
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(int id)
 		{
 			var authorDetails = await _service.GetByIdAsync(id);
 
