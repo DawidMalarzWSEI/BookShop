@@ -43,6 +43,7 @@
 
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {
+
                     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edytuj</a>
                 }
         </div>

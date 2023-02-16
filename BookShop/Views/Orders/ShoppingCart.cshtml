@@ -1,4 +1,4 @@
-﻿@using BookShop.Data.ViewModels;
+﻿@*@using BookShop.Data.ViewModels;
 @model ShoppingCartVM;
 
 @{
@@ -60,4 +60,71 @@
 			</div>
 		</div>
 	</div>
+</div>*@
+
+
+@using BookShop.Data.ViewModels
+@model ShoppingCartVM
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container my-5">
+    <h1 class="text-center mb-5">Shopping Cart</h1>
+    @if (Model.ShoppingCart.ShoppingCartItems.Count == 0)
+    {
+        <p class="text-center">Your shopping cart is empty</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Produkt</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col">Ilość</th>
+                        <th scope="col"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+                    {
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="@item.Book.PictureURL" class="img-fluid" alt="@item.Book.Title" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h5 class="mt-0">@item.Book.Title</h5>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Book.Id" class="btn btn-sm btn-primary">-</a>
+                                <span class="mx-3">@item.Amount</span>
+                                <a asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Book.Id" class="btn btn-sm btn-primary">+</a>
+                            </td>
+                            <td>@((item.Amount * item.Book.Price).ToString("c"))</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td><strong>Total:</strong></td>
+                        <td>@Model.ShoppingCartTotal.ToString("c")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="text-center">
+
+            <a class="btn btn-outline-primary" asp-action="CompleteOrder">Zapłać</a>
+            <a class="btn btn-outline-success" asp-controller="Books" asp-action="Index">Dodaj kolejny produkt</a>
+        </div>
+    }
 </div>
