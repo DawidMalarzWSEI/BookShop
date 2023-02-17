@@ -19,14 +19,14 @@ namespace BookShop.Controllers
             _context = context;
         }
 
-        public IActionResult Login()
-        {
-            return View(new LoginVM());
-        }
 
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult Login()
+        {
+            return View(new LoginVM());
         }
 
         [HttpPost]

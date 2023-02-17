@@ -24,6 +24,7 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(options => {
 	options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 });
+builder.Services.AddControllersWithViews();
 //var dbConnextionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(dbConnextionString));
