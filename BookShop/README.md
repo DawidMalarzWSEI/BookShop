@@ -28,8 +28,8 @@ Utwórz nową bazę danych o nazwie "sklep_internetowy".
 W pliku appsettings.json zmień nazwę serwera SQL Servera oraz login i hasło, jeśli zostały zmienione:
 ```
 "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Database=sklep_internetowy;User Id=username;Password=password;"
-    },
+    "DefaultConnection": "Data Source=DESKTOP-4ODKDHC;Initial Catalog=bookshopv2;Integrated Security=True;Pooling=False;TrustServerCertificate=True"
+  },
 ```
 # Opis
 
@@ -62,7 +62,7 @@ Dodatkowo, na stronie znajduje się zakładka z pisarzami, w której można znal
 Aby ułatwić użytkownikom wyszukiwanie konkretnych pozycji, aplikacja posiada także wyszukiwarkę książek, która umożliwia filtrowanie wyników po tytułach.
 W górnym prawym rogu strony znajdują się przyciski do zalogowania się lub utworzenia konta. Dzięki temu użytkownicy mają możliwość korzystania ze swojego indywidualnego koszyka i historii zamówień.
 
-!["app"](images/app.png)
+<img src="https://github.com/DawidMalarzWSEI/BookShop/blob/master/BookShop/Images/app.png">
 
 # Baza danych
 Do tego projektu została wykorzystana relacyjna baza danych oparta na systemie zarządzania bazą danych Microsoft SQL Server.
@@ -75,4 +75,4 @@ W bazie danych znajdują się pięć tabel:
 - Tabela `Authors` przechowująca informacje o każdym autorze, w tym imię i nazwisko, biografię i zdjęcie.
 - Tabela `ShoppingCartItems` przechowująca informacje o przedmiotach w koszyku, w tym informacje o książce, ilości egzemplarzy i łącznej cenie.
 
-!["app"](images/db.png)
+<img src="https://github.com/DawidMalarzWSEI/BookShop/blob/master/BookShop/Images/db.png">
