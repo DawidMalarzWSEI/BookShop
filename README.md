@@ -14,7 +14,7 @@ Aplikacja wymaga zainstalowania następujących narzędzi:
 ### Repozytorium
 1. Sklonuj repozytorium na swoje urządzenie:
     ```bash
-    git clone https://github.com/username/sklep-internetowy.git
+    https://github.com/DawidMalarzWSEI/BookShop.git
     ```
 
 2. Otwórz projekt w programie Visual Studio.
@@ -22,9 +22,6 @@ Aplikacja wymaga zainstalowania następujących narzędzi:
 
 ### Baza danych
 Konfiguracja bazy danych
-
-Uruchom program Microsoft SQL Server Management Studio.
-Utwórz nową bazę danych o nazwie "sklep_internetowy".
 W pliku appsettings.json zmień nazwę serwera SQL Servera oraz login i hasło, jeśli zostały zmienione:
 ```
 "ConnectionStrings": {
