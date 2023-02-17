@@ -31,6 +31,20 @@ W pliku appsettings.json zmień nazwę serwera SQL Servera oraz login i hasło, 
     "DefaultConnection": "Data Source=DESKTOP-4ODKDHC;Initial Catalog=bookshopv2;Integrated Security=True;Pooling=False;TrustServerCertificate=True"
   },
 ```
+
+### Aplikacja
+user
+```
+Login: test@test.pl
+Hasło: zaq1@WSX
+```
+
+admin:
+```
+Login: admin@admin.pl
+Hasło: zaq1@WSX
+```
+
 # Opis
 
 ### Opis funkcjonalności:
@@ -76,3 +90,8 @@ W bazie danych znajdują się pięć tabel:
 - Tabela `ShoppingCartItems` przechowująca informacje o przedmiotach w koszyku, w tym informacje o książce, ilości egzemplarzy i łącznej cenie.
 
 <img src="https://github.com/DawidMalarzWSEI/BookShop/blob/master/BookShop/Images/db.png">
+
+
+# Dodatkowo w projekcie:
+- Znajdują się kilka testów
+- W folderze z kontrolerami znajduje się dodatkowo kontroler API
